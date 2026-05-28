@@ -43,5 +43,4 @@ jobs:
             pkill -f tictactoe || true
             sleep 5
             cd /home/ubuntu/app
-            nohup java -jar tictactoe-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
-            exit 0
+            setsid java -jar tictactoe-0.0.1-SNAPSHOT.jar > app.log 2>&1 < /dev/null &
