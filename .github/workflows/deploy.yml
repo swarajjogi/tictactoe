@@ -40,12 +40,14 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            PID=$(pgrep -f 'tictactoe-0.0.1-SNAPSHOT.jar')
+            PID=$(pgrep -f 'tictactoe')
 
             if [ ! -z "$PID" ]; then
               kill -9 $PID
             fi
 
+            sleep 5
+
             cd /home/ubuntu/app
 
-            nohup java -jar tictactoe-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
+            nohup java -jar target/tictactoe-0.0.1-SNAPSHOT.jar > app.log 2>&1 &
