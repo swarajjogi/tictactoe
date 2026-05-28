@@ -40,11 +40,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            PID=$(pgrep -f 'tictactoe')
-
-            if [ ! -z "$PID" ]; then
-              kill -9 $PID
-            fi
+            kill $(lsof -t -i:8080) || true
 
             sleep 5
 
